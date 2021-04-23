@@ -5,21 +5,27 @@
 #include <cmath>
 using namespace std;
 
-int is_primo(int n)
+bool isPrimo (int n)
 {
-    while()
-}
-int main()
-{
-    int sum = 0;
-    for (int i = 0; i < 4000000; i++ )
+    for (int i = 2; i < n; i++) 
     {
-        if(fibonacci_r(i) % 2 == 0)
-        {
-            // cout<<i<<endl;
-            sum += fibonacci_r(i);
+        if (n%i==0){
+            return false;
         }
     }
-    cout<<sum<<endl;
+    return true;
+}
+
+int main()
+{
+    // int n = 13195;
+    long int n = 600851475143;
+    for (long int i = 2; i < sqrt(n)+1; i++ )
+    {
+        if(n%i == 0 && isPrimo(i))
+        {
+            cout<<i<<endl;
+        }
+    }
     return 0;
 }

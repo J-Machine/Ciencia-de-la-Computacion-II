@@ -30,7 +30,8 @@ int main()
     // Creación de un array de los 1 000 000 primeros numeros enteros
     long n = 1000000;
     long arrayN[n];
-    for (long i=1; i<=n; i++)
+    arrayN[0]=0;
+    for (long i=0; i<=n; i++)
         arrayN[i] = i;
 
     cout<<sumIterativa(arrayN, n)<<endl;

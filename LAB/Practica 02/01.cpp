@@ -7,13 +7,6 @@
 #include <string>
 using namespace std;
 
-void createArray(long n)
-{
-    int i, arrayN[n];
-    for (i=1; i<=n; i++)
-        arrayN[i] = i;
-}
-
 long long sumIterativa (long a[], long tam)
 {
     long long suma = 0;
@@ -22,12 +15,14 @@ long long sumIterativa (long a[], long tam)
     return suma;
 }
 
-long long sumRecursiva (int a[], long tam)
+long long sumRecursiva (long a[], long tam, long pos)   // Recorre las posiciones y va sumando valores hasta que sea menor o igual
 {
-    if (tam == 1)
-        return a[0];
-    else
-        
+    if (pos <= tam){
+        // cout<< tam<<"-"<< pos <<"-" << a[pos];
+        // cout<<endl;
+        return a[pos] + sumRecursiva( a, tam, ++pos);
+    }
+    return 0;
 }
 
 int main()
@@ -39,5 +34,7 @@ int main()
         arrayN[i] = i;
 
     cout<<sumIterativa(arrayN, n)<<endl;
+    cout<<sumRecursiva(arrayN, n, 0)<<endl;
+
     return 0;
 }

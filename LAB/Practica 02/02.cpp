@@ -26,6 +26,7 @@ void invertir (long* start, long* end)
     while(start < end)
         swap(*start++, *end--);        
 } 
+
 int main ()
 {
     // Creación de un array de los 1 000 000 primeros numeros enteros

@@ -33,7 +33,7 @@ int DynamicArray::getSize()const
     return size;
 }
 
-//push_back insertar en pos final un elemento
+//push_back: insertar en pos final un elemento
 void DynamicArray::pushBack(Person elem)
 {
     Person *temp =  new Person [size + 1];
@@ -51,19 +51,26 @@ void DynamicArray::pushBack(Person elem)
 void DynamicArray::insert(Person elem, int pos)
 {
     Person *temp =  new Person [size + 1];
-    int i;
-    while(i < pos)
+    int i= 0;   // indice para arr
+
+    // copiar los elementos a temp mientras no se alcance la posicion de insercion
+    while(i < pos)  
     {
         temp[i] = arr[i];
         i++;
     }
+    
+    // Cuando se alcanze la pos de insercion se añade el elemento
     temp[pos] = elem;   // i y pos tienen el mismo valor
-    pos +=1;
-    while (i < size+1)
+    pos +=1;            // será indice para temp
+    
+    // Ahora pos es indice para el arreglo temp y agrega los elementos desplazados
+    while (pos < size+1)    // Pos esta un valor adelante de i
     {
+        // std::cout<<"Valor de i-pos "<<i<<pos<<std::endl;
         temp[pos] = arr[i];
-        i++;
         pos++;
+        i++;
     }
     delete [] arr;
     size+=1;
@@ -73,33 +80,34 @@ void DynamicArray::insert(Person elem, int pos)
 //remove: recibe la posicion del elemento que se elimina
 void DynamicArray::remove(int pos)
 {
-    if(pos < size)
+    Person *temp =  new Person [size -1];
+    int i = 0;
+
+    // Copiar los elementos a temp mientras no se alcance la pos a eliminar
+    while (i < pos)
     {
-        Person *temp =  new Person [size -1];
-        for(size_t i = 0; i < size-1; i++)
-        {
-            if (i == pos)
-                i++;
-            temp[i] = arr[i];
-        }
-        delete [] arr;
-        size-=1;
-        arr = temp;
+        temp[i] = arr[i];
+        i++;
     }
-    else
+    i++;     // cuando se alcanzo la pos para eliminar (i = pos) el indidce de arr avanza hacia la sgt posicion
+
+    // pos es el nuevo indice para temp. Se copia los elementos faltantes de arra a temp
+    while(pos < size - 1)
     {
-        std::cout<<"La posición ingresada no es válida"<<std::endl;
+        temp[pos] = arr[i]; // pos esta una posicion por detras de arr
+        pos++;
+        i++;
     }
+    delete [] arr;
+    size-=1;                // actualización del tamaño
+    arr = temp;
 
 }
 
 void DynamicArray::show() const
 {
     for( size_t i = 0; i < size; i++)
-    {
         std::cout<<"Pos "<<i<<": "<<arr[i].getName()<<std::endl;
-
-    }
 }
 
 // Destructor

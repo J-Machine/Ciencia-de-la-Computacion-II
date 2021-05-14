@@ -1,6 +1,5 @@
 /* 
 * Implemente una función que reciba una cadena y retorne su tamaño. (Iterativa y recursiva)
-* Ayuda: https://es.quora.com/Cómo-puedo-contar-el-número-de-caracteres-en-una-cadena-usando-C
 */
 #include <iostream>
 #include <cmath>

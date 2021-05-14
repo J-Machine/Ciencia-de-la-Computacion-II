@@ -38,7 +38,7 @@ int main()
 {
     // Creación de un array de los 1 000 000 primeros numeros enteros
     long n = 1000000;
-    long tam = 1000000;
+    long tam = n;
     long* arreglo = new long[tam];
 
     for (long i = 0; i < tam; i++, n--)

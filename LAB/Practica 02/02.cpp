@@ -32,10 +32,10 @@ int main ()
     // Creación de un array de los 1 000 000 primeros numeros enteros
     long n = 1000000;
     long arrayN[n];
-    for (long i=1; i<=n; i++)
-        arrayN[i] = i;
+    for (long i=0; i<n; i++)
+        arrayN[i] = i+1;
     
-    invertir(arrayN, arrayN + n);
+    invertir(arrayN, arrayN + n-1);
     print(arrayN, n);
     return 0;
 }

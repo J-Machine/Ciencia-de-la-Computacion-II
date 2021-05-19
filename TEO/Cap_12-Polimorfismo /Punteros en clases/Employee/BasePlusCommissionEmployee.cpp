@@ -1,9 +1,7 @@
-// Fig. 11.15: BasePlusCommissionEmployee.cpp
-// Class BasePlusCommissionEmployee member-function definitions.
+// Fig. 12.16: BasePlusCommissionEmployee.cpp
+// BasePlusCommissionEmployee member-function definitions.
 
-// * Clase BasePlusCommissionEmployee que hereda de CommissionEmployee
-// * Pero que no puede acceder directamente a la data de la clase privada 
-
+#include <iomanip>
 #include <stdexcept>
 #include <sstream>
 
@@ -21,6 +19,7 @@ BasePlusCommissionEmployee::BasePlusCommissionEmployee(
     setBaseSalary(salary); // validate and store base salary
 }
 
+
 // set base salary
 void BasePlusCommissionEmployee::setBaseSalary(double salary)
 {
@@ -36,17 +35,21 @@ double BasePlusCommissionEmployee::getBaseSalary() const
     return baseSalary;
 }
 
-// calculate earnings
+
+// calculate earnings;
+// override virtual function earnings in CommissionEmployee
 double BasePlusCommissionEmployee::earnings() const
 {
     return getBaseSalary() + CommissionEmployee::earnings();
 }
 
-// return string representation of BasePlusCommissionEmployee object
+
+// return a string representation of a BasePlusCommissionEmployee
 string BasePlusCommissionEmployee::toString() const
 {
     ostringstream output;
+    output << fixed << setprecision(2);
     output << "base-salaried " << CommissionEmployee::toString()
-           << "\nbase salary: " << getBaseSalary();
+           << "; base salary: " << getBaseSalary();
     return output.str();
 }

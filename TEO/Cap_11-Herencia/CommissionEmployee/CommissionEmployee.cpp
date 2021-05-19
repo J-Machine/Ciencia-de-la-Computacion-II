@@ -1,20 +1,26 @@
+// Fig. 11.14: CommissionEmployee.cpp
 // Class CommissionEmployee member-function definitions.
+
+// * Archivo de implementación de la clase CommissionEmployee: 
+// * la clase CommissionEmployee usa funciones miembro para manipular sus datos privados.
+
 #include <iomanip>
 #include <stdexcept>
 #include <sstream>
+
 #include "CommissionEmployee.h" // CommissionEmployee class definition
+
 using namespace std;
 
 // constructor
 CommissionEmployee::CommissionEmployee(const string &first,
                                        const string &last, const string &ssn, double sales, double rate)
+    : firstName(first), lastName(last), socialSecurityNumber(ssn)
 {
-    firstName = first;          // should validate
-    lastName = last;            // should validate
-    socialSecurityNumber = ssn; // should validate
-    setGrossSales(sales);       // validate and store gross sales
-    setCommissionRate(rate);    // validate and store commission rate
+    setGrossSales(sales);    // validate and store gross sales
+    setCommissionRate(rate); // validate and store commission rate
 }
+
 
 // set first name
 void CommissionEmployee::setFirstName(const string &first)
@@ -23,6 +29,7 @@ void CommissionEmployee::setFirstName(const string &first)
 }
 // return first name
 string CommissionEmployee::getFirstName() const { return firstName; }
+
 
 // set last name
 void CommissionEmployee::setLastName(const string &last)
@@ -73,7 +80,7 @@ double CommissionEmployee::getCommissionRate() const
 // calculate earnings
 double CommissionEmployee::earnings() const
 {
-    return commissionRate * grossSales;
+    return getCommissionRate() * getGrossSales();
 }
 
 // return string representation of CommissionEmployee object
@@ -81,9 +88,10 @@ string CommissionEmployee::toString() const
 {
     ostringstream output;
     output << fixed << setprecision(2); // two digits of precision
-    output << "commission employee: " << firstName << " " << lastName
-           << "\nsocial security number: " << socialSecurityNumber
-           << "\ngross sales: " << grossSales
-           << "\ncommission rate: " << commissionRate;
+    output << "commission employee: "
+           << getFirstName() << ' ' << getLastName()
+           << "\nsocial security number: " << getSocialSecurityNumber()
+           << "\ngross sales: " << getGrossSales()
+           << "\ncommission rate: " << getCommissionRate();
     return output.str();
 }

@@ -72,6 +72,7 @@ void DynamicArray::insert(Person elem, int pos)
         pos++;
         i++;
     }
+    
     delete [] arr;
     size+=1;
     arr = temp;

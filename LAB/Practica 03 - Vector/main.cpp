@@ -24,8 +24,8 @@ int main()
     q.show();
 
     Person e("Erick", 32456);
-    q.insert(e,3);
-    cout <<"\nINSERT(pos 3): Tamaño del nuevo arreglo: "<<q.getSize()<<endl;
+    q.insert(e,1);
+    cout <<"\nINSERT(pos 1): Tamaño del nuevo arreglo: "<<q.getSize()<<endl;
     q.show();
 
     q.remove(0);    

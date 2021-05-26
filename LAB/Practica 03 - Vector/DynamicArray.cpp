@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 #include "DynamicArray.h"
 
@@ -33,8 +34,18 @@ int DynamicArray::getSize()const
     return size;
 }
 
+void DynamicArray::resize(int newSize) {
+    Person *tmp = new Person[newSize];
+    int minSize = (newSize > size) ? size : newSize;
+    for(int i = 0; i < minSize; i++)
+        tmp[i] = arr[i];
+    delete[] arr;
+    size = newSize;
+    arr = tmp;
+}
+
 //push_back: insertar en pos final un elemento
-void DynamicArray::pushBack(Person elem)
+/* void DynamicArray::pushBack(Person elem)
 {
     Person *temp =  new Person [size + 1];
     for(size_t i = 0; i< size; i++)
@@ -45,64 +56,51 @@ void DynamicArray::pushBack(Person elem)
     delete [] arr;
     size+=1;
     arr = temp;
+} */
+
+void DynamicArray::pushBack(Person elem) {
+    resize(size + 1);
+    arr[size - 1] = elem;
 }
 
 //insert: recibe el elemento Person y lo inserta en la pos dada
 void DynamicArray::insert(Person elem, int pos)
 {
-    Person *temp =  new Person [size + 1];
-    int i= 0;   // indice para arr
-
-    // copiar los elementos a temp mientras no se alcance la posicion de insercion
-    while(i < pos)  
+    resize(size + 1);
+    int i = size - 1; // i toma el valor de la ultima pos
+    while (i > pos)
     {
-        temp[i] = arr[i];
-        i++;
+        arr[i] = arr[i-1];
+        i--;    
     }
-    
-    // Cuando se alcanze la pos de insercion se añade el elemento
-    temp[pos] = elem;   // i y pos tienen el mismo valor
-    pos +=1;            // será indice para temp
-    
-    // Ahora pos es indice para el arreglo temp y agrega los elementos desplazados
-    while (pos < size+1)    // Pos esta un valor adelante de i
-    {
-        // std::cout<<"Valor de i-pos "<<i<<pos<<std::endl;
-        temp[pos] = arr[i];
-        pos++;
-        i++;
-    }
-    
-    delete [] arr;
-    size+=1;
-    arr = temp;
+    arr[pos] = elem;
 }
 
 //remove: recibe la posicion del elemento que se elimina
 void DynamicArray::remove(int pos)
 {
-    Person *temp =  new Person [size -1];
-    int i = 0;
-
-    // Copiar los elementos a temp mientras no se alcance la pos a eliminar
-    while (i < pos)
+    int i = pos;
+    while(i < size - 1) // size esta actualizado al tam final
     {
-        temp[i] = arr[i];
+        arr[i] = arr[i+1]; // pos esta una posicion por detras de arr
         i++;
     }
-    i++;     // cuando se alcanzo la pos para eliminar (i = pos) el indidce de arr avanza hacia la sgt posicion
+    resize(size-1);
+}
 
-    // pos es el nuevo indice para temp. Se copia los elementos faltantes de arra a temp
-    while(pos < size - 1)
+void DynamicArray::clear() 
+{
+    resize(0);
+}
+
+void DynamicArray :: print() const
+{
+    for(int x = 0;x<size; x++)
     {
-        temp[pos] = arr[i]; // pos esta una posicion por detras de arr
-        pos++;
-        i++;
+        std::cout << "Elemento "<< x <<": \t"
+             << "Nombre: " << arr[x].getName() << "\t"
+             << "Id: " << arr[x].getId() << "\n";
     }
-    delete [] arr;
-    size-=1;                // actualización del tamaño
-    arr = temp;
-
 }
 
 void DynamicArray::show() const

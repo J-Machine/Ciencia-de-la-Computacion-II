@@ -28,6 +28,8 @@ class Jugador
         void setPosicion(std::string _posicion);
         // destructor
         ~Jugador();
+
+        friend std::ostream& operator<<(std::ostream &out, const Jugador &j);
 };      
 
 // constructores
@@ -71,6 +73,14 @@ void Jugador::setEquipo(std::string _equipo){
 }
 void Jugador::setPosicion(std::string _posicion){
     this->posicion = _posicion;
+}
+
+std::ostream& operator<<(std::ostream &out, const Jugador &j){
+    out << "Nombre: " << j.nombre << std::endl;
+    out << "Número: " << j.numero << std::endl;
+    out << "Equipo: " << j.equipo << std::endl;
+    out << "Posicion: " << j.posicion << std::endl;
+    return out;
 }
 
 // destructor

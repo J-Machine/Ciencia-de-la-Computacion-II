@@ -7,6 +7,22 @@ using namespace std;
 
 int main()
 {   
+    // Instancia personas
+    Person p1 ("Ana", 11111);
+    Person p2 ("Beto", 22222);
+    Person p3 ("Carlos", 33333);
+    Person p4 ("Diana", 44444);
+
+    Person arr_p[] = {p1, p2, p3, p4};
+    int tamP = sizeof(arr_p)/sizeof(arr_p[0]);
+
+    DynamicArray<Person> personas(arr_p, tamP);
+    
+    // sobrecarga de Persona
+    cout<<p1<<endl;
+    // sobrecarga de Dynamic array
+    // cout<<personas<<endl;
+    
     // Instanciar jugadores
     Jugador j1("Paolo Gurrero", 9, "Perú", "Delantero"); 
     Jugador j2("Jose Olaya",99, "Brasil", "Delantero"); 
@@ -19,12 +35,10 @@ int main()
 
     DynamicArray<Jugador> jugadores(arr, tam);
 
+    // sobrecarga de Jugador
+    cout<<j1<<endl;
+
     
-    // Sobrecarga el operador de salida para la clase jugador
-    // Sobrecarga el operador de salida para la clase Persona
-    // Sobrecarga el operador de salida para la clase DynamicArray
-    
-    jugadores.print();
 
     return 0;
 }

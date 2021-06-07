@@ -32,6 +32,15 @@ class DynamicArray
         void show() const;
 
         ~DynamicArray();
+
+        friend std::ostream& operator<<(std::ostream &out, const DynamicArray &d){
+            for( size_t i = 0; i < d.size; i++)
+            {
+                out << "Posición: "<<i<<std::endl;
+                
+            }
+            return out;
+        }
 };
 
 template <typename T>
@@ -139,4 +148,5 @@ DynamicArray<T>::~DynamicArray()
 {
     delete []arr;
 }
+
 #endif

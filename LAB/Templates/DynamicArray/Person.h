@@ -24,6 +24,12 @@ class Person
         void setId(int id){
             this->id = id;
         }
+        friend std::ostream& operator<<(std::ostream &out, const Person &p);
 };
+std::ostream& operator<<(std::ostream &out, const Person &p);
+    out << "Nombre: " << p.name << std::endl;
+    out << "ID: " << p.id << std::endl;
+    return out;
+}
 
 #endif

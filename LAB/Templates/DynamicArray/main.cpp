@@ -1,5 +1,6 @@
 #include <iostream>
 #include "DynamicArray.h"
+#include "Person.h"
 #include "Jugador.h"
 
 using namespace std;
@@ -21,7 +22,7 @@ int main()
     // sobrecarga de Persona
     cout<<p1<<endl;
     // sobrecarga de Dynamic array
-    // cout<<personas<<endl;
+    cout<<personas<<endl;
     
     // Instanciar jugadores
     Jugador j1("Paolo Gurrero", 9, "Perú", "Delantero"); 

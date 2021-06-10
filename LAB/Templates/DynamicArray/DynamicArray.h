@@ -2,7 +2,7 @@
 #define __DYNAMICARRAY_H__
 
 #include <string>
-#include "Person.h"
+#include <iostream>
 
 template <typename T>
 class DynamicArray
@@ -33,14 +33,22 @@ class DynamicArray
 
         ~DynamicArray();
 
-        friend std::ostream& operator<<(std::ostream &out, const DynamicArray &d){
+        friend std::ostream& operator << (std::ostream &out, const DynamicArray<T> &d){
             for( size_t i = 0; i < d.size; i++)
             {
-                out << "Posición: "<<i<<std::endl;
+                out << "Posición: "<<i<<" ";
+                out << d.arr[i] << std::endl;
                 
             }
             return out;
         }
+        // template <typename T>
+        // std::ostream& operator<<(std::ostream &out, DynamicArray<T> p){
+        //         for(int i=0;i<p.getSize();i++){
+        //             out << "["<< p.arr[i] << "]"<< "\n";
+        //         }
+        //         return out;      
+        // }
 };
 
 template <typename T>

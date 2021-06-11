@@ -5,8 +5,9 @@ using namespace std;
 
 int main()
 {   
-    // instancia lista vacía
-    LinkedList lista;
+    // instancia lista 
+    Node node(10);
+    LinkedList lista(&node);
     lista.print();
 
     // Insertar elementos
@@ -21,6 +22,8 @@ int main()
     cout << "Remover elemento 3: " << endl;
     lista.remove(3);
     lista.print();
+
+    cout << lista <<endl;
 
     return 0;
 }

@@ -6,13 +6,23 @@
 LinkedList::LinkedList()
 {
     this->size = 0;
-    head = nullptr;
+    this->head = nullptr;
+}
+
+LinkedList::LinkedList(Node* node)
+{
+    this->size = 1;
+    this->head = node;
 }
 
 // Getter
 int LinkedList::getSize() const
 {
     return this->size;
+}
+Node* LinkedList::getHead() const
+{
+    return this->head;
 }
 
 // Functions insert, remove and print
@@ -94,6 +104,22 @@ void LinkedList::print()
     }
     std::cout << std::endl;
 }
+
+// Sobrecarga de operador salida
+std::ostream& operator << (std::ostream &out, const LinkedList &list)
+{
+    Node *actual = list.head;
+    while (actual != nullptr)
+        {
+            out << list.head->getElem() << " -> ";
+            if (actual->getNext() == nullptr)
+                out << "Null";
+            actual = actual->getNext();
+        }
+    return out; 
+}
+
+
 LinkedList::~LinkedList()
 {
 }

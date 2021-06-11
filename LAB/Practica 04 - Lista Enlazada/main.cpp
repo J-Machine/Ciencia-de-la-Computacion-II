@@ -11,7 +11,7 @@ int main()
     lista.print();
 
     // Insertar elementos
-    cout << "Insertar elementos: " << endl;
+    cout << "\nInsertar elementos: " << endl;
     lista.insert(3);
     lista.insert(1);
     lista.insert(4);
@@ -19,10 +19,11 @@ int main()
     lista.print();
     
     // Remover elemento
-    cout << "Remover elemento 3: " << endl;
+    cout << "\nRemover elemento 3: " << endl;
     lista.remove(3);
     lista.print();
 
+    cout << "\nSobrecarga de operador: " << endl;
     cout << lista <<endl;
 
     return 0;

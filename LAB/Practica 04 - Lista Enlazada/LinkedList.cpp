@@ -1,5 +1,3 @@
-
-
 #include <iostream>
 #include "LinkedList.h"
 
@@ -70,6 +68,7 @@ void LinkedList::remove(int elem)
         }
         if (aux_borrar == nullptr)
             std::cout << "No se encontró el elemento a remover en la lista" << std::endl;
+            
         else if (temp == nullptr)
         {
             head = head->getNext();
@@ -109,16 +108,17 @@ void LinkedList::print()
 std::ostream& operator << (std::ostream &out, const LinkedList &list)
 {
     Node *actual = list.head;
+
     while (actual != nullptr)
-        {
-            out << list.head->getElem() << " -> ";
-            if (actual->getNext() == nullptr)
-                out << "Null";
-            actual = actual->getNext();
-        }
+    {
+        out << actual->getElem() << " -> ";
+        if (actual->getNext() == nullptr)
+            out << "Null";
+        actual = actual->getNext();
+    }
+    
     return out; 
 }
-
 
 LinkedList::~LinkedList()
 {

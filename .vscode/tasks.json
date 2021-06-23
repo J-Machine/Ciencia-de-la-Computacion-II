@@ -2,8 +2,8 @@
     "tasks": [
         {
             "type": "cppbuild",
-            "label": "C/C++: g++-9 compilar archivo activo",
-            "command": "/usr/bin/g++-9",
+            "label": "C/C++: g++ compilar archivo activo",
+            "command": "/usr/bin/g++",
             "args": [
                 "-g",
                 "${file}",
@@ -11,7 +11,7 @@
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],
             "options": {
-                "cwd": "${workspaceFolder}"
+                "cwd": "${fileDirname}"
             },
             "problemMatcher": [
                 "$gcc"

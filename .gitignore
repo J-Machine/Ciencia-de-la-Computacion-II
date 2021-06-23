@@ -6,3 +6,7 @@ EXAM/
 *.cppcheck
 *.xml
 *.txt
+*.zip
+*.exe
+.vscode/launch.json
+.vscode/tasks.json

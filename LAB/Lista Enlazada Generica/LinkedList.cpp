@@ -3,12 +3,6 @@
 #include <iostream>
 #include "Node.cpp"
 
-// template <typename T>
-// class LinkedList;
-
-// template <typename T>
-// std::ostream& operator<<(std::ostream &out,const LinkedList<T> &p);
-
 template <typename T>
 class LinkedList {
         int size;
@@ -17,18 +11,80 @@ class LinkedList {
         LinkedList();
         LinkedList(T);
         LinkedList(const LinkedList&);
-
         ~LinkedList();
 
-        void insert(T);
-        void remove(T); // remove by value
+        class Iterator{ // La declaración de reenvío debe realizarse en el mismo ámbito de acceso
+            // LinkedList<T>* lista;
+            // Node<T> *nodo;
+            // Iterator(LinkedList<T>* lista, Node<T> *nodo);
+            // friend class LinkedList<T>;
+            
+            public:
+                Iterator() noexcept : currentNode(head) {};
+                Iterator(const Node<T> *pNode) noexcept : currentNode (pNode) {};
 
-        bool search(T);
+                // Sobrecarga de operadores = pre y post ++
+                Iterator& operator = (Node<T>* pNode)
+                {
+                    this->currentNode = pNode;
+                    return *this;
+                } 
+                Iterator& operator++ () // Pre incremento
+                {
+                    if (currentNode)
+                        currentNode = currentNode->getNext();
+                    return *this;
+                }
+                Iterator& operator++ (int) // Post incremento
+                {
+                    Iterator iterator = *this;
+                    ++(*this);
+                    return iterator;
+                }
+                bool operator!=(const Iterator& iterator)
+                {
+                    return currentNode != iterator.currentNode;
+                }
+
+                T operator*()
+                {
+                    return currentNode->getValue();
+                }
+            
+            private:
+                const Node<T> *currentNode;
+        };        
+        Iterator begin(){
+            return Iterator(head);
+        }
+        Iterator end(){
+            return Iterator(nullptr);
+        }
+        void traverse();
 
         int getSize() const;
+        
+        void insert(T);
+        void remove(T); // remove by value
+        bool search(T);
+
+
         template<class U> friend std::ostream& operator<< (std::ostream &out, const LinkedList<U> &p);
 
 };
+
+template <typename T>
+void LinkedList<T>::traverse()
+{
+    Node<T>* rastreador = this->head;
+
+    while (rastreador)
+    {
+        std::cout << rastreador->getValue() << "->";
+        rastreador = rastreador->getNext();
+    }
+    std::cout << std::endl;
+}
 
 /***/
 
